@@ -1,15 +1,13 @@
 import * as Koa from 'koa';
 import * as serve from 'koa-static';
-import * as webpack from 'webpack';
 import * as config from '../../webpack.config.js';
 import * as koaWebpack from 'koa-webpack';
 
 const app = new Koa();
-const compiler = webpack(config);
 const index: string =
     '<html><head><link rel="stylesheet" type="text/css" href="main.css"></head><body><div id="main">Das it mang</div><script src="bundle.js"></script></body></html>';
 
-koaWebpack({ compiler }).then(middleware => {
+koaWebpack({ config }).then(middleware => {
     app.use(middleware);
 });
 
