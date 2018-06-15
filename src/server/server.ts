@@ -6,12 +6,12 @@ import * as koaWebpack from 'koa-webpack';
 
 const app = new Koa();
 const compiler = webpack(config);
-const index: string = '<html><head><link rel="stylesheet" type="text/css" href="main.css"></head><body><div id="main">Das it mang</div><script src="bundle.js"></script></body></html>'
+const index: string =
+    '<html><head><link rel="stylesheet" type="text/css" href="main.css"></head><body><div id="main">Das it mang</div><script src="bundle.js"></script></body></html>';
 
-koaWebpack({ compiler })
-    .then(middleware => {
-        app.use(middleware);
-    });
+koaWebpack({ compiler }).then(middleware => {
+    app.use(middleware);
+});
 
 app.use(serve('./dist'));
 
@@ -24,4 +24,4 @@ app.use(async ctx => {
 });
 
 app.listen(4000);
-console.log('Now listening on localhost:4000...')
+console.log('Now listening on localhost:4000...');
