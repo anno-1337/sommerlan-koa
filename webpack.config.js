@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -9,7 +8,7 @@ module.exports = {
     mode: 'development',
     output: {
         filename: '[name]-bundle.js',
-        path: path.resolve(__dirname, '/dist'),
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
     devServer: {
@@ -46,10 +45,19 @@ module.exports = {
                 test: /\.html$/,
                 use: [
                     {
-                        loader: 'html-loader',
+                        loader: 'file-loader',
                         options: {
-                            attrs: ['img:src'],
+                            name: '[name].[ext]',
                         },
+                    },
+                    {
+                        loader: 'extract-loader',
+                        options: {
+                            publicPath: ',',
+                        },
+                    },
+                    {
+                        loader: 'html-loader',
                     },
                 ],
             },
@@ -66,10 +74,5 @@ module.exports = {
             },
         ],
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new HTMLWebpackPlugin({
-            template: './src/client/index.html',
-        }),
-    ],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
 };
