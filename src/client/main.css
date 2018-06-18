@@ -1,3 +1,6 @@
 body {
-    background-color: lightblue;
+    font-family: Source Sans Pro,Trebuchet MS,Lucida Grande,Bitstream Vera Sans,Helvetica Neue,sans-serif;
+    margin: 0;
+    color: #293c4b;
+    padding-left: 2rem;
 }
