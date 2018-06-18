@@ -5,27 +5,33 @@
   "author": "anno1337",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ./src/server/server.ts --exec ts-node"
+    "start": "nodemon --watch webpack.config.js --watch src/server/server.ts src/server/server.ts --exec ts-node"
   },
   "dependencies": {
     "koa": "^2.5.1",
-    "koa-static": "^4.0.3",
-    "typescript": "^2.9.2"
+    "koa-static": "^4.0.3"
   },
   "devDependencies": {
     "@types/koa": "^2.0.46",
     "@types/webpack": "^4.4.0",
-    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "extract-loader": "^2.0.1",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^23.1.0",
-    "koa-webpack": "^5.0.2",
+    "koa-webpack-dev-middleware": "^2.0.2",
+    "koa-webpack-hot-middleware": "^1.0.3",
     "nodemon": "^1.17.5",
     "prettier": "^1.13.5",
+    "style-loader": "^0.21.0",
     "ts-loader": "^4.4.1",
     "ts-node": "^6.1.1",
+    "typescript": "^2.9.2",
     "typescript-eslint-parser": "^16.0.0",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.7"

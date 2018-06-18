@@ -1,25 +1,27 @@
-import * as Koa from 'koa';
+import * as koa from 'koa';
 import * as serve from 'koa-static';
+import * as webpack from 'webpack';
 import * as config from '../../webpack.config.js';
-import * as koaWebpack from 'koa-webpack';
+import * as devMiddleware from 'koa-webpack-dev-middleware';
+import * as hotMiddleware from 'koa-webpack-hot-middleware';
 
-const app = new Koa();
-const index: string =
-    '<html><head><link rel="stylesheet" type="text/css" href="main.css"></head><body><div id="main">Das it mang</div><script src="bundle.js"></script></body></html>';
+const app = new koa();
 
-koaWebpack({ config }).then(middleware => {
-    app.use(middleware);
-});
+const compiler: object = webpack(config);
+
+app.use(
+    devMiddleware(compiler, {
+        stats: {
+            colors: true,
+        },
+        publicPath: config.output.publicPath,
+    })
+);
+
+app.use(hotMiddleware(compiler));
 
 app.use(serve('./dist'));
 
 app.use(serve('./public'));
 
-app.use(async ctx => {
-    if (ctx.path === '/') {
-        ctx.body = index;
-    }
-});
-
 app.listen(4000);
-console.log('Now listening on localhost:4000...');
