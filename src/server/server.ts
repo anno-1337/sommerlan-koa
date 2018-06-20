@@ -4,8 +4,11 @@ import * as webpack from 'webpack';
 import * as config from '../../webpack.config.js';
 import * as devMiddleware from 'koa-webpack-dev-middleware';
 import * as hotMiddleware from 'koa-webpack-hot-middleware';
+import Database from './database';
 
 const app = new koa();
+
+const database = new Database();
 
 const compiler: object = webpack(config);
 
@@ -23,5 +26,11 @@ app.use(hotMiddleware(compiler));
 app.use(serve('./dist'));
 
 app.use(serve('./public'));
+
+app.use(ctx => {
+    if ((ctx.path = '/gamelist')) {
+        ctx.body = database.getList();
+    }
+});
 
 app.listen(4000);

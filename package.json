@@ -5,14 +5,17 @@
   "author": "anno1337",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch webpack.config.js --watch src/server/server.ts src/server/server.ts --exec ts-node",
+    "start": "nodemon --watch webpack.config.js --watch src/server/database.ts --watch src/server/server.ts src/server/server.ts --exec ts-node",
     "build": "webpack"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "koa": "^2.5.1",
-    "koa-static": "^4.0.3"
+    "koa-static": "^4.0.3",
+    "sqlite3": "^4.0.0"
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.34",
     "@types/koa": "^2.0.46",
     "@types/webpack": "^4.4.0",
     "babel-preset-env": "^1.7.0",
