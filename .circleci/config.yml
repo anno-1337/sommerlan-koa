@@ -4,31 +4,34 @@
 #
 version: 2
 jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:10
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+  build-docker-image:
+    machine: true
+    woring-directory: ~/repo
     steps:
+      # build docker image
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: docker build -t sommerlan@anno1337.com .
+      - run: docker tag playmorepromode.com fjoggs/sommerlan@anno1337.com:latest
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker push fjoggs/sommerlan@anno1337.com:latest
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "79:b4:12:1e:cc:40:05:11:c6:a1:df:e7:10:37:ca:49"
+      - attach_workspace:
+          at: ~/tmp/repo
+      - run: ssh fjoggs@anno1337.com '/home/fjoggs/scripts/continous-deployment-sommerlan-koa.sh'
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build-docker-image
+      - deploy:
+          requires:
+            - yarn-test
+            - build-docker-image
+          filters:
+            branches:
+              only: 
+                - master
