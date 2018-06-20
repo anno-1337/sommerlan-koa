@@ -29,7 +29,6 @@ workflows:
       - build-docker-image
       - deploy:
           requires:
-            - yarn-test
             - build-docker-image
           filters:
             branches:
