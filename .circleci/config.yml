@@ -19,7 +19,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "79:b4:12:1e:cc:40:05:11:c6:a1:df:e7:10:37:ca:49"
+            - "0a:2b:71:79:5b:9d:0a:9e:3e:2f:d7:23:9f:63:2c:29"
       - attach_workspace:
           at: ~/tmp/repo
       - run: ssh fjoggs@anno1337.com '/home/fjoggs/scripts/continous-deployment-sommerlan-koa.sh'
