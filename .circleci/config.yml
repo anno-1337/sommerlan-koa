@@ -10,10 +10,10 @@ jobs:
     steps:
       # build docker image
       - checkout
-      - run: docker build -t sommerlan@anno1337.com .
-      - run: docker tag playmorepromode.com fjoggs/sommerlan@anno1337.com:latest
+      - run: docker build -t sommerlan .
+      - run: docker tag sommerlan fjoggs/sommerlan:latest
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: docker push fjoggs/sommerlan@anno1337.com:latest
+      - run: docker push fjoggs/sommerlan:latest
   deploy:
     machine: true
     steps:
