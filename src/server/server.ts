@@ -29,6 +29,7 @@ app.use(serve('./public'));
 
 app.use(ctx => {
     if ((ctx.path = '/gamelist')) {
+        database.refreshList();
         ctx.body = database.getList();
     }
 });

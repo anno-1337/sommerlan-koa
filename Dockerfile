@@ -5,7 +5,13 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json package-lock.json ./
-RUN npm install
+
+RUN apk add --no-cache --virtual .gyp \
+    python \
+    make \
+    g++ \
+    && npm install \
+    && apk del .gyp
 
 # Bundle app source
 COPY . .
