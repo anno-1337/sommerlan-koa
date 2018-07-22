@@ -21,6 +21,15 @@ app.use(
     })
 );
 
+var a;
+a = 2;
+
+app.use(ctx => {
+    ctx.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    ctx.set('Pragma', 'no-cache');
+    ctx.set('Expires', '0');
+});
+
 app.use(hotMiddleware(compiler));
 
 app.use(serve('./dist'));
