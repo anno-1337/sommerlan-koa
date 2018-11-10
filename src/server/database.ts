@@ -1,7 +1,7 @@
 import { game } from '../client/indexGames';
 
 const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('/home/fjogen/sommerlan-database.db');
+let db = new sqlite3.Database('/sommerlan-database.db');
 let list: game[] = [];
 
 export default class Database {
