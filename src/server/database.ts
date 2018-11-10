@@ -19,7 +19,7 @@ export default class Database {
     }
 
     refreshList(): void {
-        db = new sqlite3.Database('/home/fjogen/sommerlan-database.db');
+        db = new sqlite3.Database('/sommerlan-database.db');
         db.serialize(() => {
             db.all('SELECT rowid, name, url FROM games', (error, rows) => {
                 if (error) {
