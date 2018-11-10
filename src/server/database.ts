@@ -1,13 +1,13 @@
 import { game } from '../client/indexGames';
 
 const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('/sommerlan-database.db');
+let db = new sqlite3.Database('/home/fjogen/sommerlan-database.db');
 let list: game[] = [];
 
 export default class Database {
     constructor() {
         db.serialize(() => {
-            db.all('SELECT * FROM games', (error, rows) => {
+            db.all('SELECT rowid, name, url FROM games', (error, rows) => {
                 if (error) {
                     console.log('Something went wrong: ', error);
                 } else {
@@ -19,9 +19,9 @@ export default class Database {
     }
 
     refreshList(): void {
-        db = new sqlite3.Database('/sommerlan-database.db');
+        db = new sqlite3.Database('/home/fjogen/sommerlan-database.db');
         db.serialize(() => {
-            db.all('SELECT * FROM games', (error, rows) => {
+            db.all('SELECT rowid, name, url FROM games', (error, rows) => {
                 if (error) {
                     console.log('Something went wrong: ', error);
                 } else {

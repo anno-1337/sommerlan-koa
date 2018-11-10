@@ -4,3 +4,29 @@ body {
     color: #293c4b;
     padding-left: 2rem;
 }
+
+table {
+    width: 100%;
+}
+
+th {
+    cursor: pointer;
+}
+
+th:hover {
+    color: black;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: left;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+a {
+    text-decoration: none;
+}
