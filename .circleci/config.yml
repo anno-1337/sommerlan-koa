@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run: docker build -t sommerlan .
       - run: docker tag sommerlan fjoggs/sommerlan:latest
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: echo "$DOCKER_PASS" docker login -u $DOCKER_USER --password-stdin
       - run: docker push fjoggs/sommerlan:latest
   deploy:
     machine: true
