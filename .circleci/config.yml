@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run: docker build -t sommerlan .
       - run: docker tag sommerlan anno1337/sommerlan:latest
-      - run: echo "$DOCKER_PASS" docker login -u $DOCKER_USER --password-stdin
+      - run: echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
       - run: docker push anno1337/sommerlan:latest
   deploy:
     machine: true
