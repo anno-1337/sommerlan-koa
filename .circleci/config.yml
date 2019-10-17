@@ -11,7 +11,7 @@ jobs:
       # build docker image
       - checkout
       - run: docker build -t sommerlan .
-      - run: docker tag sommerlan fjoggs/sommerlan:latest
+      - run: docker tag sommerlan anno1337/sommerlan:latest
       - run: echo "$DOCKER_PASS" docker login -u $DOCKER_USER --password-stdin
       - run: docker push anno1337/sommerlan:latest
   deploy:
